@@ -30,7 +30,7 @@ router.post("/signup", (req, res) => {
       message: "Password is too Short",
     });
   } else {
-    User.find({ email }) // Use findOne instead of find to get a single document
+    User.findOne({ email }) // Use findOne instead of findOne to get a single document
       .then((result) => {
         if (result) {
           res.json({
@@ -94,7 +94,7 @@ router.post("/signin", (req, res) => {
       message: "Empty Credentials Supplied",
     });
   } else {
-    User.find({ email }) // Use findOne instead of find
+    User.findOne({ email }) // Use findOne instead of findOne
       .then((data) => {
         if (!data) {
           res.json({
