@@ -2,7 +2,7 @@
 require("./config/db");
 
 const app = require("express")();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 10000;
 
 const UserRouter = require("./api/User");
 
