@@ -19,6 +19,11 @@ import { FiMail, FiLock, FiUser } from "react-icons/fi";
 import * as Yup from "yup";
 import * as Loader from "react-loader";
 
+//Auth & Redux
+import { connect } from "react-redux";
+import { signupUser } from "./../auth/actions/userActions";
+import { useNavigate } from "react-router-dom";
+
 const initialValues = {
   email: "",
   password: "",
@@ -28,7 +33,8 @@ const handleSubmit = (values) => {
   console.log("Valores do formulário:", values);
 };
 
-const Signup = () => {
+const Signup = ({ signupUser }) => {
+  const navigate = useNavigate();
   return (
     <div>
       <StyledFormArea>
@@ -56,8 +62,8 @@ const Signup = () => {
               .required("Required")
               .oneOf([Yup.ref("password")], "Passwords must match"),
           })}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
+          onSubmit={(values, { setSubmitting, setFieldError }) => {
+            signupUser(values, navigate, setFieldError, setSubmitting);
           }}
         >
           {({ isSubmitting }) => (
@@ -116,4 +122,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default connect(null, { signupUser })(Signup);
