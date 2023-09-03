@@ -1,12 +1,27 @@
-//Styled Components
+// Pages
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+
+// Styled Components
 import React from "react";
 import { StyledContainer } from "./components/Style";
 
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 function App() {
   return (
-    <StyledContainer>
-      <p>Hello Brother Shino</p>
-    </StyledContainer>
+    <Router>
+      <StyledContainer>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </StyledContainer>
+    </Router>
   );
 }
 
